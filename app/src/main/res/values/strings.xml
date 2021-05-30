@@ -7,8 +7,13 @@
     <string name="convert">Convert</string>
     <string-array name="units_array">
         <item>Cups</item>
-        <item>Fluid ounces</item>
-        <item>Grams </item>
+        <item>Fluid Ounces</item>
+        <item>Tablespoons</item>
+        <item>Teaspoons</item>
+        <item>Pints</item>
+        <item>Quarts</item>
+        <item>Gallons</item>
         <item>Milliliters</item>
     </string-array>
+    <string name="result">Result: %s</string>
 </resources>
