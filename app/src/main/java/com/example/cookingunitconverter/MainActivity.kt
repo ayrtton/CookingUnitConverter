@@ -1,16 +1,14 @@
 package com.example.cookingunitconverter
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import androidx.appcompat.app.AppCompatActivity
 import com.example.cookingunitconverter.databinding.ActivityMainBinding
 import java.text.NumberFormat
 
 class MainActivity : AppCompatActivity() {
-    lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,11 +23,16 @@ class MainActivity : AppCompatActivity() {
 
     private fun convertUnit() {
         val stringInTextField = binding.value.text.toString()
-        val value = stringInTextField.toDouble()
+        val value = stringInTextField.toDoubleOrNull()
+        if(value == null) {
+            binding.result.text = ""
+            return
+        }
+
         val convertFrom = binding.unitsConvertFrom.selectedItem.toString()
         val convertTo = binding.unitsConvertTo.selectedItem.toString()
 
-        //Convert input to cups
+        //Convert input to Cups (US)
         var conversionAux = conversionAux(convertFrom)
         val valueInCups = value / conversionAux
 
@@ -37,8 +40,7 @@ class MainActivity : AppCompatActivity() {
         conversionAux = conversionAux(convertTo)
         var result = valueInCups * conversionAux
 
-        val roundUp = binding.roundUpSwitch.isChecked
-        if(roundUp) {
+        if(binding.roundUpSwitch.isChecked) {
             result = kotlin.math.ceil(result)
         }
 
@@ -48,15 +50,27 @@ class MainActivity : AppCompatActivity() {
 
     private fun conversionAux(unit: String): Double {
         return when(unit) {
-            "Cups" -> 1.0
-            "Fluid Ounces" -> 8.0
-            "Tablespoons" -> 16.0
-            "Teaspoons" -> 48.0
-            "Pints" -> 0.5
-            "Quarts" -> 0.25
-            "Gallons" -> 0.0625
-            "Milliliters" -> 240.0
-            else -> 1.0
+                "Cups (US)" -> 1.0
+                "Cups (Metric)" -> 0.9464
+                "Cups (Imperial)" -> 0.8327
+                "Deciliters [dL]" -> 2.3659
+                "Fluid Ounces (UK) [fl oz]" -> 8.3267
+                "Fluid Ounces (US) [fl oz]" -> 8.0
+                "Gallons (UK) [gal]" -> 0.052
+                "Gallons (US)" -> 0.0625
+                "Liters [L]" -> 0.2366
+                "Milliliters [mL]" -> 236.5882
+                "Pints (UK) [pt]" -> 0.4163
+                "Pints (US) [pt]" -> 0.5
+                "Quarts (UK) [qt]" -> 0.2082
+                "Quarts (US) [qt]" -> 0.25
+                "Tablespoons (US)" -> 16.0
+                "Tablespoons (Metric)" -> 15.7725
+                "Tablespoons (Imperial)" -> 13.3228
+                "Teaspoons (US)" -> 48.0
+                "Teaspoons (Metric)" -> 47.3176
+                "Teaspoons (Imperial)" -> 39.9683
+                else -> 0.0
         }
     }
 

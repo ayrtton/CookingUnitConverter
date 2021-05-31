@@ -6,14 +6,26 @@
     <string name="round_up_result">Round up result?</string>
     <string name="convert">Convert</string>
     <string-array name="units_array">
-        <item>Cups</item>
-        <item>Fluid Ounces</item>
-        <item>Tablespoons</item>
-        <item>Teaspoons</item>
-        <item>Pints</item>
-        <item>Quarts</item>
-        <item>Gallons</item>
-        <item>Milliliters</item>
+        <item>Cups (US)</item>
+        <item>Cups (Metric)</item>
+        <item>Cups (Imperial)</item>
+        <item>Deciliters [dL]</item>
+        <item>Fluid Ounces (UK) [fl oz]</item>
+        <item>Fluid Ounces (US) [fl oz]</item>
+        <item>Gallons (UK) [gal]</item>
+        <item>Gallons (US)</item>
+        <item>Liters [L]</item>
+        <item>Milliliters [mL]</item>
+        <item>Pints (UK) [pt]</item>
+        <item>Pints (US) [pt]</item>
+        <item>Quarts (UK) [qt]</item>
+        <item>Quarts (US) [qt]</item>
+        <item>Tablespoons (US)</item>
+        <item>Tablespoons (Metric)</item>
+        <item>Tablespoons (Imperial)</item>
+        <item>Teaspoons (US)</item>
+        <item>Teaspoons (Metric)</item>
+        <item>Teaspoons (Imperial)</item>
     </string-array>
     <string name="result">Result: %s</string>
 </resources>
