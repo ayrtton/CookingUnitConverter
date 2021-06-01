@@ -55,7 +55,8 @@
         android:text="@string/round_up_result"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/units_convert_to" />
+        app:layout_constraintTop_toBottomOf="@id/units_convert_to"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
 
     <Button
         android:id="@+id/convert_button"
