@@ -1,78 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/value"
-        android:layout_width="160dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/value"
-        android:inputType="numberDecimal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:importantForAutofill="no" />
+        android:padding="16dp"
+        tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/convert_from"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/convert_from"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/value" />
+        <ImageView
+            android:id="@+id/icon_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:importantForAccessibility="no"
+            app:layout_constraintBottom_toBottomOf="@id/value"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/value"
+            app:srcCompat="@drawable/ic_value" />
 
-    <Spinner
-        android:id="@+id/units_convert_from"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/convert_from" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/value"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:hint="@string/value"
+            app:layout_constraintStart_toEndOf="@id/icon_value"
+            app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/convert_to"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/convert_to"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/units_convert_from" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/value_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal" />
 
-    <Spinner
-        android:id="@+id/units_convert_to"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/convert_to" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <Switch
-        android:id="@+id/round_up_switch"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:checked="true"
-        android:text="@string/round_up_result"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/units_convert_to"
-        tools:ignore="UseSwitchCompatOrMaterialXml" />
+        <ImageView
+            android:id="@+id/icon_conversion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:importantForAccessibility="no"
+            app:layout_constraintBottom_toBottomOf="@id/convert_from"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/convert_from"
+            app:srcCompat="@drawable/ic_conversion" />
 
-    <Button
-        android:id="@+id/convert_button"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/convert"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/round_up_switch" />
+        <TextView
+            android:id="@+id/convert_from"
+            style="@style/Widget.CookingUnitConverter.TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/convert_from"
+            app:layout_constraintStart_toStartOf="@id/value"
+            app:layout_constraintTop_toBottomOf="@id/value" />
 
-    <TextView
-        android:id="@+id/result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Result: "
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/convert_button" />
+        <Spinner
+            android:id="@+id/units_convert_from"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingVertical="8dp"
+            app:layout_constraintStart_toStartOf="@id/convert_from"
+            app:layout_constraintTop_toBottomOf="@id/convert_from" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/convert_to"
+            style="@style/Widget.CookingUnitConverter.TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/convert_to"
+            app:layout_constraintStart_toStartOf="@id/units_convert_from"
+            app:layout_constraintTop_toBottomOf="@id/units_convert_from" />
+
+        <Spinner
+            android:id="@+id/units_convert_to"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingVertical="8dp"
+            app:layout_constraintStart_toStartOf="@id/convert_to"
+            app:layout_constraintTop_toBottomOf="@id/convert_to" />
+
+        <ImageView
+            android:id="@+id/icon_round_up"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:importantForAccessibility="no"
+            app:layout_constraintBottom_toBottomOf="@id/round_up_switch"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/round_up_switch"
+            app:srcCompat="@drawable/ic_round_up" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/round_up_switch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:checked="true"
+            android:text="@string/round_up_result"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/icon_round_up"
+            app:layout_constraintTop_toBottomOf="@id/units_convert_to"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+        <Button
+            android:id="@+id/convert_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/convert"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/round_up_switch"
+            app:layout_constraintTop_toBottomOf="@id/round_up_switch" />
+
+        <TextView
+            android:id="@+id/result"
+            style="@style/Widget.CookingUnitConverter.TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/convert_button"
+            tools:text="Result: " />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

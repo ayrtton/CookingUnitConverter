@@ -1,6 +1,10 @@
 package com.example.cookingunitconverter
 
+import android.content.Context
 import android.os.Bundle
+import android.view.KeyEvent
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
@@ -19,10 +23,21 @@ class MainActivity : AppCompatActivity() {
         fillSpinner(binding.unitsConvertTo)
 
         binding.convertButton.setOnClickListener { convertUnit() }
+        binding.valueEditText.setOnKeyListener { view, keyCode, _ -> handleKeyEvent(view, keyCode)}
+    }
+
+    private fun handleKeyEvent(view: View, keyCode: Int): Boolean {
+        if (keyCode == KeyEvent.KEYCODE_ENTER) {
+            // Hide the keyboard
+            val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+            return true
+        }
+        return false
     }
 
     private fun convertUnit() {
-        val stringInTextField = binding.value.text.toString()
+        val stringInTextField = binding.valueEditText.text.toString()
         val value = stringInTextField.toDoubleOrNull()
         if(value == null) {
             binding.result.text = ""
