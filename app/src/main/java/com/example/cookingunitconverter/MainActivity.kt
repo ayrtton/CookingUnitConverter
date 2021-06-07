@@ -11,12 +11,19 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.cookingunitconverter.databinding.ActivityMainBinding
 import java.text.NumberFormat
 
+const val RESULT = "result"
+
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+
+        if (savedInstanceState != null) {
+            binding.result.text = savedInstanceState.getString(RESULT, "")
+        }
+
         setContentView(binding.root)
 
         fillSpinner(binding.unitsConvertFrom)
@@ -24,6 +31,11 @@ class MainActivity : AppCompatActivity() {
 
         binding.convertButton.setOnClickListener { convertUnit() }
         binding.valueEditText.setOnKeyListener { view, keyCode, _ -> handleKeyEvent(view, keyCode)}
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString(RESULT, binding.result.text as String?)
     }
 
     private fun handleKeyEvent(view: View, keyCode: Int): Boolean {
